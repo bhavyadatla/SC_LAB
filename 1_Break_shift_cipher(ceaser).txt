@@ -35,3 +35,37 @@ public class CaesarCipher {
         sc.close();
     }
 }
+
+o/p
+
+Enter Text: vvit
+Enter Shift: 5
+Encrypted: aany
+Decrypted: vvit
+Brute Force Attack:
+Key 0: aany
+Key 1: zzmx
+Key 2: yylw
+Key 3: xxkv
+Key 4: wwju
+Key 5: vvit
+Key 6: uuhs
+Key 7: ttgr
+Key 8: ssfq
+Key 9: rrep
+Key 10: qqdo
+Key 11: ppcn
+Key 12: oobm
+Key 13: nnal
+Key 14: mmzk
+Key 15: llyj
+Key 16: kkxi
+Key 17: jjwh
+Key 18: iivg
+Key 19: hhuf
+Key 20: ggte
+Key 21: ffsd
+Key 22: eerc
+Key 23: ddqb
+Key 24: ccpa
+Key 25: bboz
