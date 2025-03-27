@@ -1,0 +1,48 @@
+import java.security.*;
+import java.util.Base64;
+import java.util.Scanner;
+
+public class DSASign {
+    public static void main(String[] args) throws Exception {
+        KeyPair kp = genKeyPair();
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter message:");
+        String msg = sc.nextLine();
+
+        String sig = sign(msg, kp.getPrivate());
+        System.out.println("Signature: " + sig);
+
+        boolean verified = verify(msg, sig, kp.getPublic());
+        System.out.println("Verified: " + verified);
+
+        sc.close();
+    }
+
+    static KeyPair genKeyPair() throws Exception {
+        KeyPairGenerator kpg = KeyPairGenerator.getInstance("DSA");
+        kpg.initialize(2048);
+        return kpg.generateKeyPair();
+    }
+
+    static String sign(String data, PrivateKey priv) throws Exception {
+        Signature s = Signature.getInstance("SHA256withDSA");
+        s.initSign(priv);
+        s.update(data.getBytes());
+        return Base64.getEncoder().encodeToString(s.sign());
+    }
+
+    static boolean verify(String data, String sig, PublicKey pub) throws Exception {
+        Signature s = Signature.getInstance("SHA256withDSA");
+        s.initVerify(pub);
+        s.update(data.getBytes());
+        return s.verify(Base64.getDecoder().decode(sig));
+    }
+}
+
+
+OUTPUT: 
+Enter message to sign:
+VVIT
+Generated Signature: MDwCHFd3bhUzFRr/D2I+J0H/efYw6HAE67R0n167BfECHG9pzPEF8iNO1oCEdRDG8rvXD+jitNqA2aiPlhM=
+Signature Verified: true
